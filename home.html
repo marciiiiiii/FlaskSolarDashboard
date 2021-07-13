@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}
+    Solar Übersicht
+{% endblock %}
+
+{% block content %}
+<!--    einbetten bokeh 
+        1.Script chart
+        2.html chart
+        3.css chart
+        4.Javascript    -->
+        
+
+        <!--Script Donut Wechselrichter-->
+<link rel="stylesheet" href={{ cdn_css_Wr | safe}} type="text/css" />
+<script type = "text/javascript" src={{ cdn_js_Wr | safe}} ></script>
+
+        <!-- Script Donut Eigenverbrauch-->
+<link rel="stylesheet" href={{ cdn_css_Eig | safe}} type="text/css" />
+<script type = "text/javascript" src={{ cdn_js_Eig | safe}} ></script>
+
+        <!-- Script Donut SmartPi-->
+<link rel="stylesheet" href={{ cdn_css_Smart | safe}} type="text/css" />
+<script type = "text/javascript" src={{ cdn_js_Smart | safe}} ></script>
+<!-- Bootstrap Grid-->
+<div class="container overflow-hidden">
+
+    <div class="row gy-5">
+            <!--Reihe 1-->
+            <!-- Wechselrichter (Zeile 1) -->
+        <div class="col-4">  
+            {{ scriptchartWr | safe}}
+            {{ divchartWr | safe}}
+            <span style="font-size: 30px" class="glyphicon glyphicon-flash"></span>
+        </div> 
+            <!-- Eigenverbrauch (Zeile 3) -->
+        <div class="col-4"></div>
+        <div class="col-4">
+            {{ scriptchartEig | safe}}
+            {{ divchartEig | safe}}
+        </div>
+
+            <!--Reihe 2-->
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+
+            <!--Reihe 3-->
+            <!-- SmartPi-->
+        <div class="col-4">
+            {{ scriptchartSmart | safe}}
+            {{ divchartSmart | safe}} 
+            {{ AnzeigetextPi }}
+            {{ response }}
+        </div> 
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

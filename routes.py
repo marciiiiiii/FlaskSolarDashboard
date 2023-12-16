@@ -25,16 +25,16 @@ from bokeh.models import BoxAnnotation
 def home_page():
 
         #Funktion für Post request wird für alle webserver ausgeführt -> dictionary wird zurückgegeben, dann wird in dictionary nach benötigtem wert gesucht
-        datenWr1 = post_request('http://192.168.1.38/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceID=1&DataCollection=CommonInverterData')
+        datenWr1 = post_request('http://<ip-address>/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceID=1&DataCollection=CommonInverterData')
         wr1 = datenWr1['Body']['Data']['PAC']['Value'] 
 
-        datenWr2 = post_request('http://192.168.1.37/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceID=1&DataCollection=CommonInverterData')
+        datenWr2 = post_request('http://<ip-address>/solar_api/v1/GetInverterRealtimeData.cgi?Scope=Device&DeviceID=1&DataCollection=CommonInverterData')
         wr2 = datenWr2['Body']['Data']['PAC']['Value'] 
 
         wrges = wr1 + wr2
         
         #request funktion für SmartPi (summierter Wert zurückgegeben)
-        smartPi = get_smartPi('http://192.168.1.31:1080/api/1/power/now','http://192.168.1.31:1080/api/2/power/now','http://192.168.1.31:1080/api/3/power/now')
+        smartPi = get_smartPi('http://<ip-address>/api/1/power/now','http://<ip-address>/api/2/power/now','http://<ip-address>/api/3/power/now')
         immerPositivPi, anzeigetextPi = SmartPiWert(smartPi)
 
         #Funkrion zur berechnung Eigenverbrauch
